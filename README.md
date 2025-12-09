@@ -5,7 +5,7 @@ Protein abundance in mammalian cells is regulated at multiple levels, including 
 
 <div class="figure" style="text-align: center">
 <img src="images/RiboNN.png" alt="RiboNN (from Zheng et al., 2025)" width="80%" />
-<p class="caption"> <b>Fig. 2.</b>  Schematic representation showing the workflow of transcriptome-wide TE calculations for the human and mouse and TE correlations in humans. (Maslova et al. 2020) </p>
+<p class="caption"> <b>Fig. 1.</b>  Schematic representation showing the workflow of transcriptome-wide TE calculations for the human and mouse and TE correlations in humans. (Maslova et al. 2020) </p>
 </div>
 
 ## Ideas for objectives and work plan

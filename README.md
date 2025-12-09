@@ -36,6 +36,11 @@ You can download the datasets for the analysis from here:
 
 - Feature sizes, sequences, CV folds and TEs predicted by the mouse RiboNN models: https://static-content.springer.com/esm/art%3A10.1038%2Fs41587-025-02712-x/MediaObjects/41587_2025_2712_MOESM6_ESM.xlsx
 
+## Code
+
+RiboNN: https://github.com/Sanofi-Public/RiboNN/
+
+The classic ML model code: https://github.com/CenikLab/TE_classic_ML
 
 ## References
 

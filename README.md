@@ -1,11 +1,11 @@
-# The Cis-regulatory Code of Mouse Immune Cells
+# Predicting the translation efficiency of messenger RNA in mammalian cells
 
 ## Summary
-Protein abundance in mammalian cells is regulated at multiple levels, including transcription, mRNA stability, translation, and protein degradation. Among these layers, translation efficiency, which is a measure of how effectively an mRNA molecule is converted into protein, is one of the major determinants of protein abundance. The paper “Predicting the translation efficiency of messenger RNA in mammalian cells” (Zheng, D. et al., 2025) explores how mRNA encoded features, such as sequence composition, codon usage, untranslated region (UTR) elements, and RNA structure, affect how efficiently an mRNA is translated into protein. Using computational models, they identify some of the sequence and structural determinants that drive translation efficiency, allowing for the prediction of protein output directly from mRNA features.
+Protein abundance in mammalian cells is regulated at multiple levels, including transcription, mRNA stability, translation, and protein degradation. Among these layers, translation efficiency, which is a measure of how effectively an mRNA molecule is converted into protein, is one of the major determinants of protein abundance. The paper “Predicting the translation efficiency of messenger RNA in mammalian cells” (Zheng et al., 2025) explores how mRNA encoded features, such as sequence composition, codon usage, untranslated region (UTR) elements, and RNA structure, affect how efficiently an mRNA is translated into protein. Using computational models, they identify some of the sequence and structural determinants that drive translation efficiency, allowing for the prediction of protein output directly from mRNA features.
 
 <div class="figure" style="text-align: center">
-<img src="images/AI-TAC.png" alt="AI-TAC (from Maslova et al. 2020)" width="80%" />
-<p class="caption"> <b>Fig. 2.</b> Using Deep Learning models to understand the cis-regulatory grammar of immune cells (Maslova et al. 2020) </p>
+<img src="images/RiboNN.png" alt="RiboNN (from Zheng et al., 2025)" width="80%" />
+<p class="caption"> <b>Fig. 2.</b>  Schematic representation showing the workflow of transcriptome-wide TE calculations for the human and mouse and TE correlations in humans. (Maslova et al. 2020) </p>
 </div>
 
 ## Ideas for objectives and work plan

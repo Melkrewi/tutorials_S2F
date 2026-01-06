@@ -186,6 +186,7 @@ subread-align -T 20 -t 1 -d 50 -D 600 -i genome_index -r READS_1.fastq.gz -R REA
 ```
 ## Bam to bigwig
 
+[reference](https://deeptools.readthedocs.io/en/develop/content/tools/bamCoverage.html)
 ```
 samtools sort -o sample.sorted.bam sample.bam
 samtools index sample.sorted.bam

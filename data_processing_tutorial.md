@@ -167,6 +167,17 @@ subread-buildindex -o genome_index GENOME_ASSEMBLY.fasta
 
 subread-align -T 20 -t 1 -d 50 -D 600 -i genome_index -r READS_1.fastq.gz -R READS_2.fastq.gz -o subread_results.bam
 ```
+## Cell ranger
+
+```
+module load cellranger/5.0.0
+
+cellranger mkref --genome=refgenome4cellranger2 --fasta=GENOME.fasta --genes=REFERENCE.gtf
+
+FASTQS="~/PATH_TO_FASTQS/"
+
+cellranger count --transcriptome=./refgenome4cellranger2/ --id=aibi_1 --fastqs=$FASTQS --sample=SAMPLEID --include-introns
+```
 ## Bam to bigwig
 
 [Deeptools](https://deeptools.readthedocs.io/en/develop/content/tools/bamCoverage.html)

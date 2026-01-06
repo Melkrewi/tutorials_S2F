@@ -3,18 +3,22 @@
 
 # Quality control (SE) 
 
+[fastqc](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+[multiqc](https://github.com/MultiQC/MultiQC)
+
 ```
 #load modules
 module load java
 module load fastqc
 
 #command
-srun fastqc *.fastq.gz
+fastqc *.fastq.gz
 ```
 Look at html files 
 
 
 # TRIMMOMATIC Paired End (PE) 
+[Trimmomatic](https://github.com/usadellab/Trimmomatic)
 
 Slurm script : `trimmomatic_PE.sh`
 
@@ -35,6 +39,7 @@ Comments: Look up these parameters in the [Trimmomatic manual](http://www.usadel
 - TRAILING:3
 
 # Read trimming with Trimgalore
+[Trimgalore](https://github.com/FelixKrueger/TrimGalore
 
 ## You will need to:
 * load trimgalore, cutadapt and fastqc
@@ -75,6 +80,8 @@ srun trim_galore --fastqc --paired -q 20 --length 35 reads_1.fastq reads_2.fastq
 * Subread
 
 ## Bowtie2:
+[Bowtie2](https://github.com/BenLangmead/bowtie2)
+
 ```
 module load bowtie2/2.4.5
 srun bowtie2-build fasta.fna sicusGenome 
@@ -82,6 +89,8 @@ srun bowtie2 -x sicusGenome -U 317397_S19_R1_001.fastq --local -p 50 -S female8.
 
 ```
 ## BWA MEM:
+
+[BWA](https://github.com/lh3/bwa)
 ```
 module load bwa
 module load samtools

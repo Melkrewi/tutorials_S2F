@@ -1,9 +1,9 @@
 ## data processing
 
-In a slurm script: `fastqc.sh`
 
-Content of the script:
-```ruby
+# Quality control (SE) 
+
+```
 #load modules
 module load java
 module load fastqc
@@ -11,7 +11,6 @@ module load fastqc
 #command
 srun fastqc *.fastq.gz
 ```
-
 Look at html files 
 
 # TRIMMOMATIC Single End (SE) 

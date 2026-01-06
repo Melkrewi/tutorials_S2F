@@ -127,6 +127,8 @@ do
 done
 ```
 ## STAR
+[STAR](https://github.com/alexdobin/STAR)
+
 ```
 STAR \
   --runThreadN 8 \
@@ -144,6 +146,7 @@ STAR \
   --outSAMtype BAM SortedByCoordinate
 ```
 ## Segemehl
+[Segemehl](http://legacy.bioinf.uni-leipzig.de/Software/segemehl/)
 ```
 module load conda
 conda activate segemehl
@@ -159,6 +162,8 @@ samtools view -@ 25 -F0x100 -b -o alignment.sorted_no_secondary.bam alignment.so
 samtools index -@25 alignment.sorted_no_secondary.bam #index bam
 ```
 ## Hisat2
+[Hisat2](https://github.com/DaehwanKimLab/hisat2)
+
 ```
 module load hisat2
 module load stringtie
@@ -177,6 +182,7 @@ do
 done
 ```
 ## Subread
+[Subread](https://subread.sourceforge.net/)
 ```
 export PATH=/nfs/scistore18/vicosgrp/melkrewi/Artemia_Nauplii_project_round_2/21.subread_package/subread-2.0.2-Linux-x86_64/bin/:$PATH
 
@@ -186,7 +192,7 @@ subread-align -T 20 -t 1 -d 50 -D 600 -i genome_index -r READS_1.fastq.gz -R REA
 ```
 ## Bam to bigwig
 
-[reference](https://deeptools.readthedocs.io/en/develop/content/tools/bamCoverage.html)
+[Deeptools](https://deeptools.readthedocs.io/en/develop/content/tools/bamCoverage.html)
 ```
 samtools sort -o sample.sorted.bam sample.bam
 samtools index sample.sorted.bam

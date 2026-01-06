@@ -129,7 +129,20 @@ done
 ```
 ## STAR
 ```
-
+STAR \
+  --runThreadN 8 \
+  --runMode genomeGenerate \
+  --genomeDir /path/to/STAR_index \
+  --genomeFastaFiles genome.fa \
+  --sjdbGTFfile annotation.gtf \
+  --sjdbOverhang 149
+STAR \
+  --runThreadN 8 \
+  --genomeDir /path/to/STAR_index \
+  --readFilesIn sample_R1.fastq.gz sample_R2.fastq.gz \
+  --readFilesCommand zcat \
+  --outFileNamePrefix sample_ \
+  --outSAMtype BAM SortedByCoordinate
 ```
 ## Segemehl
 ```

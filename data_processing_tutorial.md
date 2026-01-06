@@ -1,5 +1,19 @@
 ## data processing
 
+In a slurm script: `fastqc.sh`
+
+Content of the script:
+```ruby
+#load modules
+module load java
+module load fastqc
+
+#command
+srun fastqc *.fastq.gz
+```
+
+Look at html files 
+
 # TRIMMOMATIC Single End (SE) 
 
 ### Forward reads (*_R1_001.fastq.gz)
@@ -52,6 +66,37 @@ Comments: Look up these parameters in the [Trimmomatic manual](http://www.usadel
 - MINLEN:36
 - LEADING:3
 - TRAILING:3
+
+# Read trimming with Trimgalore
+
+## You will need to:
+* load trimgalore, cutadapt and fastqc
+* run Trimgalore
+
+## Add to your SLURM script:
+
+```
+#load modules here
+module load trimgalore/0.5.0 
+module load cutadapt 
+module load fastqc/0.11.7  
+
+#run commands here
+srun trim_galore --fastqc --paired -q 20 --length 35 reads_1.fastq reads_2.fastq
+```
+
+[Main change relative to default: keep only reads longer than 35 post-trimming (20 seems short for SNP calling, as it may lead to misalignments):
+
+## Short explanation of the options used:
+--fastqc: Run FastQC in the default mode on the FastQ file once trimming is complete.
+
+--paired: This option performs length trimming of quality/adapter/RRBS trimmed reads for paired-end files. To pass the validation test, both sequences of a sequence pair are required to have a certain minimum length which is governed by the option --length (see above). If only one read passes this length threshold the other read can be rescued (see option --retain_unpaired). Using this option lets you discard too short read pairs without disturbing the sequence-by-sequence order of FastQ files which is required by many aligners.
+
+--length <INT>: Discard reads that became shorter than length INT because of either quality or adapter trimming. A value of '0' effectively disables this behaviour. Default: 20 bp.
+
+-q/--quality <INT>: Trim low-quality ends from reads in addition to adapter removal. For RRBS samples, quality trimming will be performed first, and adapter trimming is carried in a second round. Other files are quality and adapter trimmed in a single pass. The algorithm is the same as the one used by BWA (Subtract INT from all qualities; compute partial sums from all indices to the end of the sequence; cut sequence at the index at which the sum is minimal). Default Phred score: 20.]
+
+
 
 # Read mapping:
 ### list of tools

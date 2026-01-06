@@ -1,4 +1,80 @@
 ## data processing
+# Read mapping:
+### list of tools
+* Bowtie2
+* BWA
+* Hisat2
+* STAR
+* Segemehl
+* Subread
+
+## Bowtie2:
+```
+module load bowtie2/2.4.5
+srun bowtie2-build fasta.fna sicusGenome 
+srun bowtie2 -x sicusGenome -U 317397_S19_R1_001.fastq --local -p 50 -S female8.sam
+
+```
+## BWA MEM:
+```
+module load bwa
+module load samtools
+bwa index GENOME_ASSEMBLY.fasta
+
+for i in *_1.fastq
+do
+    prefix=$(basename $i _1.fastq)
+    srun bwa mem -M -t 60 GENOME_ASSEMBLY.fasta ${prefix}_1.fastq ${prefix}_2.fastq | samtools view -@30 -F 4 -b | samtools sort -@30 -T individual > ${prefix}.bam
+    srun samtools index -@30 ${prefix}.bam
+done
+```
+## STAR
+```
+
+```
+## Segemehl
+```
+module load conda
+conda activate segemehl
+segemehl.x -x reference.idx -d GENOME_ASSEMBLY.fasta -t 60 #index genome
+segemehl.x -i reference.idx -d GENOME_ASSEMBLY.fasta -q READS_1_paired.fastq -p READS_5_2_paired.fastq -t 60 > alignment.sam #align reads
+module load samtools
+samtools view -@ 30 -bS -o alignment.bam alignment.sam #convert sam to bam
+samtools sort -@ 30 -o alignment.sorted.bam alignment.bam #sort bam
+samtools index alignment.sorted.bam #index bam
+rm alignment.sam
+rm alignment.bam
+samtools view -@ 25 -F0x100 -b -o alignment.sorted_no_secondary.bam alignment.sorted.bam   #remove secondary alignments
+samtools index -@25 alignment.sorted_no_secondary.bam #index bam
+```
+## Hisat2
+```
+module load hisat2
+module load stringtie
+export TMPDIR=/nfs/scistore18/vicosgrp/melkrewi/Project_snRNA_asexuality_redo_2/2.Transcriptomic_short_reads_alignments/
+mkdir hisat2
+hisat2-build GENOME_ASSEMBLY.fasta genome_index
+for i in *_1.fastq.gz
+do
+   prefix=$(basename $i _1.fastq.gz)
+   hisat2 --phred33 -p 50 --novel-splicesite-outfile hisat2/${prefix}_splicesite.txt -S hisat2/${prefix}_accepted_hits.sam -x genome_index -1 ${prefix}_1.fastq.gz -2 ${prefix}_2.fastq.gz --rna-strandness RF --max-intronlen 50000
+   samtools view -@ 25 -bS -o hisat2/${prefix}_accepted_hits.bam hisat2/${prefix}_accepted_hits.sam
+   samtools sort -@ 25 -o hisat2/${prefix}_accepted_hits.sorted.bam hisat2/${prefix}_accepted_hits.bam
+   samtools view -@ 25 -F0x100 -bS -h hisat2/${prefix}_accepted_hits.sorted.bam -o hisat2/${prefix}_aln_no_secondary.bam
+   samtools sort -@ 25 -o hisat2/${prefix}_aln_no_secondary.sorted.bam hisat2/${prefix}_aln_no_secondary.bam
+   samtools index hisat2/${prefix}_aln_no_secondary.sorted.bam
+done
+```
+## Subread
+```
+export PATH=/nfs/scistore18/vicosgrp/melkrewi/Artemia_Nauplii_project_round_2/21.subread_package/subread-2.0.2-Linux-x86_64/bin/:$PATH
+
+subread-buildindex -o genome_index GENOME_ASSEMBLY.fasta
+
+subread-align -T 20 -t 1 -d 50 -D 600 -i genome_index -r READS_1.fastq.gz -R READS_2.fastq.gz -o subread_results.bam
+```
+
+
 ```
 samtools sort -o sample.sorted.bam sample.bam
 samtools index sample.sorted.bam

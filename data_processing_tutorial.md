@@ -13,38 +13,6 @@ srun fastqc *.fastq.gz
 ```
 Look at html files 
 
-# TRIMMOMATIC Single End (SE) 
-
-### Forward reads (*_R1_001.fastq.gz)
-
-Use the `HEADCROP` option trimm the first X bp of the reads (here the first first 30 bp of the reads for example)
-
-In a slurm script: `trimmomatic_SE_forward.sh`
-
-Content of the script:
-
-```ruby
-#load modules
-module load java
-
-#command
-srun java -jar /PATH_TO/Trimmomatic-0.36/trimmomatic-0.36.jar SE -threads 40 SAMPLEID_R1_001.fastq.gz SAMPLEID_R1_001_SE.fastq.gz HEADCROP:30
-```
-
-### Reverse reads (*R2_001.fastq.gz)
-
-Use the `HEADCROP` option trimm the first X bp of the reads (here the first first 8 bp of the reads for example)
-
-In a slurm script: `trimmomatic_SE_reverse.sh`
-
-Content of the script:
-```ruby
-#load modules
-module load java
-
-#command
-srun java -jar /PATH_TO/Trimmomatic-0.36/trimmomatic-0.36.jar SE -threads 40 SAMPLEID_R2_001.fastq.gz SAMPLEID_R2_001_SE.fastq.gz HEADCROP:8
-```
 
 # TRIMMOMATIC Paired End (PE) 
 

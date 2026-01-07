@@ -1,5 +1,17 @@
 # data processing
 
+I suggest running most of this stuff in slurm scripts:
+```
+#!/bin/bash
+#SBATCH --partition=cpu-single
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=5
+#SBATCH --time=99:00:00
+#SBATCH --mem=20gb
+#SBATCH --output=output_runcqn
+export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK}
+```
 
 # Quality control (SE) 
 

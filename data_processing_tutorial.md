@@ -1,6 +1,7 @@
 # data processing
 
 I suggest running most of this stuff in slurm scripts:
+file.sh
 ```
 #!/bin/bash
 #SBATCH --partition=cpu-single
